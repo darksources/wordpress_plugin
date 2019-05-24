@@ -11,7 +11,7 @@ function load_api_helper($api_key){
     $ds = new Helper\DarkSources_API();
     $ds->auth($api_key);
     // Set API debug output to error_log
-    $ds->debug(True);
+    $ds->debug(False);
     return $ds;
 }
 

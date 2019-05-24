@@ -40,13 +40,14 @@ you put the stable version, in order to eliminate any doubt.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload `dark-sources-password-scrubber.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+1. Navigate to the 'Plugins' menu in the WordPress Admin area.
+2. Click the 'Add New' button in the top ''Plugins' section.
+3. Upload dark-sources-password-scrubber zip file via the 'Upload Plugin' button.
+4. Click the 'Activate' link to enable the plugin.
+5. Navigate to the 'Dark Sources Settings' link in the left admin menu.
+6. Choose the appropriate plan link and complete the signup process to get your API Key.
+7. Enter your new API Key in the 'Dark Sources Settings' section under 'API Key'.
+8. Once validated choose your appropriate settings. 
 
 == Frequently Asked Questions ==
 

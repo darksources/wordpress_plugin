@@ -17,6 +17,7 @@ add_filter( 'wp_mail_content_type', 'DarkSources\Notices\wp_mail_html' );
 //------------------------------------------------send notice function ------------------------------------------------/
 
 function send_notice($notice, $notice_message, $subscriber, $user){
+    $admin_email = get_option('admin_email');
     if(is_array($notice_message)){
         $email_notice = array_key_exists('email', $notice_message) && !empty($notice_message['email']) ? $notice_message['email'] : FALSE;
         $pop_up_notice = array_key_exists('pop_up', $notice_message) && !empty($notice_message['pop_up']) ? $notice_message['pop_up'] : FALSE;
@@ -64,7 +65,7 @@ function send_notice($notice, $notice_message, $subscriber, $user){
         $to = $user->user_email;
         $subject = 'Dark Sources Password Scrubber Notification - RE: ' . $user->display_name;
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
-        $headers[] = 'From: Darksources Security<info@darksources.com>';
+        $headers[] = 'From: Darksources Security<' .  $admin_email . '>';
 
         //notice message can be integrated with an outside html email using sybmol replacement and swapped in wp_mail
         //sanitized already, however can be sanitized again with wp_kses
@@ -78,7 +79,7 @@ function send_notice($notice, $notice_message, $subscriber, $user){
         $to = get_option('admin_email');
         $subject = 'Dark Sources Password Scrubber Notification - RE: ' . $user->display_name . ' - ' . $user->user_email;
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
-        $headers[] = 'From: Darksources Security<info@darksources.com>';
+        $headers[] = 'From: Darksources Security<' .  $admin_email . '>';
 
         //notice message can be integrated with an outside html email using sybmol replacement and swapped in wp_mail
         //sanitized already, however can be sanitized again with wp_kses
@@ -279,8 +280,6 @@ add_action('init', 'DarkSources\Notices\user_meta_data_js', 100);
 //--------------------------------- display and delete pop notice meta data --------------------------/
 
 function user_meta_data(){
-    ini_set('display_errors',1); error_reporting(E_ALL);
-    check_ajax_referer('dark-sources-nonce', 'nonce');
     $api_key = Options\update_get_option_field('dark_sources_api_key', 'get');
     $ds = API\load_api_helper($api_key);
     $subscriber = API\subscriber_validate($api_key, $ds);
@@ -346,14 +345,17 @@ add_action('wp_ajax_nopriv_user_meta_data', 'DarkSources\Notices\user_meta_data'
 //--------------------------------save custom message in admin menu -------------------------------------/
 
 function save_custom_message(){
-    ini_set('display_errors',1); error_reporting(E_ALL);
-    check_ajax_referer('dark-sources-custom-message-nonce', 'nonce');
     $api_key = Options\update_get_option_field('dark_sources_api_key', 'get');
     $ds = API\load_api_helper($api_key);
     $subscriber = API\subscriber_validate($api_key, $ds);
     if(in_array('valid', $subscriber) && in_array('paid', $subscriber)){
         if(isset($_POST['message']) && isset($_POST['option_name'])){
             $custom_message = sanitize_text_field($_POST['message']);
+            $valid_options = array('dark_sources_reject_custom_message', 'dark_sources_email_custom_message', 'dark_sources_login_email_custom_message', 'dark_sources_login_pop_up_custom_message');
+            if(!in_array($_POST['option_name'], $valid_options)){
+                echo 'INVALID OPTION';
+                die();
+            };
             $option_name = sanitize_text_field($_POST['option_name']);
             update_option($option_name, $custom_message);
             echo 'CUSTOM MESSAGE SAVED!';
