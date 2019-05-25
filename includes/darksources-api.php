@@ -7,9 +7,12 @@ Please see the attached example file for more information on usage of this file.
 The latest copy of this file can be found at https://github.com/darksources/api_php
 
 To unlock the more advanced features or to allow for higher query counts please register at https://billing.darksources.com/signup/
+
+Version: 1.0.0
+Author: John Sabo
+Website: https://www.darksources.com/
 */
 
-// Uncomment the following lines if including this library with a WordPress plugin.
 namespace DarkSources\Helper;
 if (! defined('WPINC')) {
 	die;
