@@ -1,42 +1,81 @@
 === Plugin Name ===
-Contributors: Andre de Almeida
+Contributors: Andre de Almeida, John Sabo
 Donate link: www.darksources.com
 Tags: comments, spam
 Requires at least: 5.0.1
-Tested up to: 5.11
+Tested up to: 5.2.1
 Stable tag: 5.11
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Connect live and protect your users with the worlds largest stolen credential collection on planet. 
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+This plugin provides usable action based on the Dark Sources RESTful API service. The Dark Sources databases is the 
+worlds largest full disclosure collection of recovered stolen data reaching over 20 billion lines of credential and
+person information over 3 billion identified individuals globally. 
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
 
-A few notes about the sections above:
+Action Triggers(note: any possible trigger will spawn alerts or actions):
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+*   Password exists for user in Dark Sources's hacker database
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+    This will trigger if the user's e-mail address and the submitted password is known to be stolen.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+*   Known password usage is in the top X
+
+    This will trigger if the passwords is ranked within the top X of known uses. A rank of 1 means it's the password
+    most known to be used and stolen while a higher rank (currently 900m is top) will be more restrictive.
+
+*   User has used the password at least X time(s) on other clean sites
+
+    This will trigger if the user has been seen X times using the submitted password by our cloud but has not been 
+    recovered as known to be stolen.
+
+*   Password used the password at least X time(s) on other clean sites
+
+    This will trigger if the password has been seen X times by our cloud with the last month but has not been
+    recovered as known to be stolen.
+
+
+Triggered Actions - On login:
+
+*   Force password change
+
+    Force the user to change their password 
+
+*   Popup alert to user
+
+    Alert the user upon login alerting to the risk with a custom generated popup message from our service or a
+    configured custom text message. 
+
+*   E-Mail alert to user
+
+    Send the user an e-mail upon login alerting to the risk with a custom generated message from our service or
+    a configured custom text message. 
+
+* Send alert to admin
+
+    Send an e-mail alert to the admin logging a positive triggers and actions taken.
+
+
+Triggered Actions - On password change (Front of site and user profile menu):
+
+*   Reject password and alert user
+
+    Reject the submitted password and alert the user to the risk with a custom generated popup message from
+    our service or a configured custom text message. 
+
+*   E-Mail alert to user
+
+    Send the user an e-mail upon password change alerting to the risk with a custom generated message from our service
+    or a configured custom text message. 
+
+* Send alert to admin
+
+    Send an e-mail alert to the admin logging a positive triggers and actions taken.
 
 == Installation ==
 
@@ -51,66 +90,35 @@ you put the stable version, in order to eliminate any doubt.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Does this plugin require a service plan? =
 
-An answer to that question.
+This plugin is an extension of our risk manage RESTful API service. Good news we offer a completely free plan.
 
-= What about foo bar? =
+Once you install the plugin you will be presented with a plan selection slider. Select your plan and click the signup link to get started. 
 
-Answer to foo bar dilemma.
+= What happens if my free plan reaches it's monthly query limit? =
+
+Once you run out of queries for the month the plugin will stop checking credentials and allow all login attempts.
+
+= How do plan query overages work? = 
+
+Once you've reached 90% of your monthly limit a preload of an additional amount will be attempted to ensure you never run out and have room to flex.
+
+= Do you offer rate wholesale pricing or reductions higher query volumes? = 
+
+The plan structure is based on a lower per query cost the higher the monthly commitment.
+
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Configuration menu 
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+= 1.0.5 =
+* Initial public release
 
 == Upgrade Notice ==
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+= 1.0.5 =
+This version is the initial release canidate
