@@ -1,14 +1,14 @@
 <?php
 /**
  * @link              www.darksources.com
- * @since             1.0.0
+ * @since             1.0.6
  * @package           Dark_Sources_Password_Scrubber
  *
  * @wordpress-plugin
  * Plugin Name:       Dark Sources Password Scrubber
  * Plugin URI:        https://github.com/darksources/wordpress_plugin
  * Description:       Detect and security risks and force them to be corrected upon user login through our dark web database, including common hacked passwords, leaked email addresses and personal data.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            Dark Sources Security
  * Author URI:        www.darksources.com
  * License:           GPL-2.0+
