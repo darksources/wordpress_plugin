@@ -70,7 +70,8 @@ function dark_sources_display_admin_page(){
                             }
                             if(!in_array('valid', $subscriber)){
                                 //registration information
-                                $subscription_plans = json_decode(file_get_contents('https://api.darksources.com/data/billing_plans/'));
+                                $r =  wp_remote_get('https://api.darksources.com/data/billing_plans/');
+                                $subscription_plans = json_decode(wp_remote_retrieve_body($r));
                                 if(!empty($subscription_plans)){
                                 ?>
                                 <!-- sales content -->

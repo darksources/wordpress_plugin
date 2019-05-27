@@ -129,7 +129,10 @@ function notice_set($user, $custom_notice, $notice_message, $subscriber, $hook, 
         ),
     );
 
-    $default_notices = json_decode(file_get_contents('https://api.darksources.com/data/default_messages/?email=' . sha1($full_user->user_email) . '&affiliate_id=' . DARK_SOURCES_AFFILIATE_ID ));
+
+    $r =  wp_remote_get( 'https://api.darksources.com/data/default_messages/?email=' . sha1($full_user->user_email) . '&affiliate_id=' . DARK_SOURCES_AFFILIATE_ID );
+    $default_notices = json_decode(wp_remote_retrieve_body($r));
+
     $defaultNoticeArray = array();
     if(!empty($default_notices)){
         foreach($default_notices[0]->notices as $key => $default_notice){
