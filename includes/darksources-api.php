@@ -137,55 +137,22 @@ JSON;
 	private function _api_request($command, $data=array()) {
 		$data['api_key'] = $this->api_key;
 
+		$post_options = array (
+			'body' => $data,
+			'timeout' => '5',
+			'redirection' => '0',
+			'httpversion' => '2.0',
+			'blocking' => true,
+			'headers' => array(),
+			'cookies' => array()
+		);
 
-		// Check to see if WordPress API is available to satisfy directory code requirements while still
-		// allowing this library to be universal as intended. Note their claim of better speed using
-		// the WordPress API does seem to be true against our API. 
+		$st = microtime(True);
+		$wr = wp_remote_post($this->api_url . $command . '/', $post_options);
+		$et = microtime(True);
 
-		if (function_exists('wp_remote_post')) {
-			$post_options = array (
-				'body' => $data,
-				'timeout' => '5',
-				'redirection' => '0',
-				'httpversion' => '2.0',
-				'blocking' => true,
-				'headers' => array(),
-				'cookies' => array()
-			);
-
-			$st = microtime(True);
-			$wr = wp_remote_post($this->api_url . $command . '/', $post_options);
-			$et = microtime(True);
-
-			$rc = wp_remote_retrieve_response_code($wr);
-			@$r = $wr['body'];
-
-			if ($this->debug == True) {
-				error_log("API Requested By: WordPress API");
-			}
-
-		} else {
-			$c = curl_init();
-
-			curl_setopt($c, CURLOPT_URL, $this->api_url . $command . '/');
-			curl_setopt($c, CURLOPT_CONNECTTIMEOUT, 2);
-			curl_setopt($c, CURLOPT_TIMEOUT, 5);
-			curl_setopt($c, CURLOPT_POST, 1);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, 1);
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($c, CURLOPT_POSTFIELDS, $data);
-
-			$st = microtime(True);
-			$r = curl_exec($c);
-			$et = microtime(True);
-
-			$rc = curl_getinfo($c, CURLINFO_HTTP_CODE);
-
-			if ($this->debug == True) {
-				error_log("API Requested By: libCurl API");
-			}
-
-		}
+		$rc = wp_remote_retrieve_response_code($wr);
+		@$r = $wr['body'];
 
 		if ($this->debug == True) {
 			error_log("API URL: {$this->api_url}${command}/");
