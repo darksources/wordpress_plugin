@@ -23,8 +23,8 @@ if (!defined('WPINC')){
 }
 
 //Current plugin version.
-define('DARK_SOURCES_PASSWORD_SCRUBBER_VERSION', '1.0.5');
-$affiliate_id = !empty(get_option('dark_sources_password_affiliate_id')) ? '?ref=' . get_option('dark_sources_password_affiliate_id') : ''; 
+define('DARK_SOURCES_PASSWORD_SCRUBBER_VERSION', '1.0.6');
+$affiliate_id = get_option('dark_sources_password_affiliate_id', ''); 
 define('DARK_SOURCES_AFFILIATE_ID', $affiliate_id);
 
 //Admin Scripts

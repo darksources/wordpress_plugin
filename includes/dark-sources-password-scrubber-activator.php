@@ -35,8 +35,8 @@ function add_settings_options(){
     add_option('dark_sources_password_rank_tolerance', '1000000', '', 'no');
     add_option('dark_sources_password_match_tolerance', '1', '', 'no');
     add_option('dark_sources_password_other_match_tolerance', '2', '', 'no');
-    $affiliate_id = 'default';
-    if($affiliate_id !== 'default'){
+    $affiliate_id = get_option('dark_sources_password_affiliate_id');
+    if($affiliate_id !== FALSE || !empty($affiliate_id)){
         add_option('dark_sources_password_affiliate_id', $affiliate_id, '', 'no');
     }
 }
