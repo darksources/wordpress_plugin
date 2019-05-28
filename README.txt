@@ -115,10 +115,19 @@ The plan structure is based on a lower per query cost the higher the monthly com
 
 == Changelog ==
 
+= 1.0.6 =
+* Changed bundled DS API library to remove curl fall back if WordPress HTTP API wasn't present
+  for plugin directory validation. curl is bad mmkay :)
+
+* API affiliate id is now stored in the database on first deactivation
+
 = 1.0.5 =
 * Initial public release
 
 == Upgrade Notice ==
+
+= 1.0.6 =
+None
 
 = 1.0.5 =
 This version is the initial release canidate
