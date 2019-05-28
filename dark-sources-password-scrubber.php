@@ -24,10 +24,8 @@ if (!defined('WPINC')){
 
 //Current plugin version.
 define('DARK_SOURCES_PASSWORD_SCRUBBER_VERSION', '1.0.5');
-if(file_exists(plugin_dir_path(__FILE__) . 'AFFILIATEID.txt')){
-	$affiliate_id = filter_var(file_get_contents(plugin_dir_path(__FILE__) . 'AFFILIATEID.txt'), FILTER_SANITIZE_NUMBER_INT);
-	define('DARK_SOURCES_AFFILIATE_ID', $affiliate_id);
-}
+$affiliate_id = !empty(get_option('dark_sources_password_affiliate_id')) ? '?ref=' . get_option('dark_sources_password_affiliate_id') : ''; 
+define('DARK_SOURCES_AFFILIATE_ID', $affiliate_id);
 
 //Admin Scripts
 function dark_sources_admin_enqueue_scripts($page) {

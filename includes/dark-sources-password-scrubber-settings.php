@@ -115,7 +115,7 @@ function dark_sources_display_admin_page(){
                                         <h1><?php echo filter_var($plan->name, FILTER_SANITIZE_STRING); ?></h1>
                                         <strong><?php echo filter_var($plan->monthly_cost, FILTER_SANITIZE_STRING); ?></strong>
                                         <p><?php echo html_entity_decode(wp_kses($plan->description, $allowed_html)); ?></p>
-                                        <a class="button" href="<?php echo esc_url($plan->url) . '?ref=' . DARK_SOURCES_AFFILIATE_ID; ?>" target="_blank">SIGN UP NOW</a>                                            
+                                        <a class="button" href="<?php echo esc_url($plan->url) . DARK_SOURCES_AFFILIATE_ID; ?>" target="_blank">SIGN UP NOW</a>                                            
                                     </div>
                                 <?php
                                     //fix loop bug and clear memory

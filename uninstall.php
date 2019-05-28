@@ -35,6 +35,7 @@ delete_option('dark_sources_password_other_match_tolerance');
 delete_option('dark_sources_nonce');
 delete_option('dark_sources_settings_update');
 delete_option('dark_sources_default_message');
+delete_option('dark_sources_password_affiliate_id');
 
 //remove any leftover user meta options
 
