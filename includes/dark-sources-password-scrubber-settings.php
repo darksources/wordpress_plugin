@@ -76,10 +76,25 @@ function dark_sources_display_admin_page(){
                                 ?>
                                 <!-- sales content -->
                                 <div id="sales-content">
-                                    <p>Dark Sources offers an API risk management service allowing you to secure your users from passwords that are idendified as high risk.<br />
-                                    To find out more information on the service visit <a href="https://www.darksources.com/passwordscrubber.html" target="_blank"> our product page</a></p>
-                                    <p>To view your personal data Dark Sources has collected on you, please request a free profile on our site <a href="https://www.freehackreport.com/">FreeHackReport.com</a></p>
-                                    <p>We also highly recommend <a href="https://www.webiron.com/">WebIron</a> for complete cloud based real-time bot and automation website protection. They've were the first and still are the #1 fully AI based on the wire real-time security platform around.</p>
+
+                                      <h3 style="font-family: Arial, sans-serif; font-size: 18px; margin: 10px 0px 10px; color: #545454;">If you already have an API Key, <a style="color: #24aa3b; text-decoration: none; cursor: pointer;" href="#api_submit">CLICK HERE</a>, otherwies read below on how to get one.</h3>
+                                      <p style="font-family: Arial, sans-serif; font-size: 15px; line-height: 24px; margin: 0px 0px 15px; color: #545454;"> HOW TO SIGN-UP AND GET YOUR API KEY
+                                       <ul>
+                                        <li><p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 12px; margin: 0px 0px 12px; color: #545454;">Use the slider below to view our plan options </li>
+                                        <li><p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 12px; margin: 0px 0px 12px; color: #545454;">Click Sign-up Now</li>
+                                        <li><p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 12px; margin: 0px 0px 12px; color: #545454;">Register for your plan</li>
+                                        <li><p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 12px; margin: 0px 0px 12px; color: #545454;">On the <B>"Thank You Page"</B>, click the link at the bottom to access the members area</li>
+                                        <li><p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 12px; margin: 0px 0px 12px; color: #545454;">Click on the <B>"Licenses Tab"</B> to obtain your License / API Key<br><B> NOTE: </B>Click the <b>"OPEN"</b> link to show the full key.</li>
+                                        <li><p style="font-family: Arial, sans-serif; font-size: 12px; line-height: 12px; margin: 0px 0px 12px; color: #545454;">Copy <B>FULL LICENSE / API KEY</B> and enter it below</li>
+                                       </ul>
+                                      </p>
+                                      <p style="font-family: Arial, sans-serif; font-size: 14px; line-height: 24px; margin: 0px 0px 14px; color: #545454;">For more information on how to use our plugin and the different settings option, just visit our  <br><a href="https://darksources.atlassian.net/wiki/spaces/PS/overview" target="_blank" style="color: #24aa3b; text-decoration: none; cursor: pointer;"><b>Knowledge Base</b></a> page.</p>
+                                      <h3 style="font-family: Arial, sans-serif; font-size: 18px; margin: 30px 0px 10px; color: #545454;">Help make the web a safer place</h3>
+                                      <p style="font-family: Arial, sans-serif; font-size: 15px; line-height: 24px; margin: 0px 0px 15px; color: #545454;">Let your users know they can get their <a style="color: #24aa3b; text-decoration: none; cursor: pointer;" href="https://freehackreport.com" target="_blank"><b>FREE HACK REPORT </b></a> and see what info hackers already know about them. <br>
+                                      <a style="color: #545454; text-decoration: none; cursor: pointer;" href="https://freehackreport.com" target="_blank">FreeHackReport.com</a></p>
+                                      <h3 style="font-family: Arial, sans-serif; font-size: 18px; margin: 30px 0px 10px; color: #545454;">Protect your website from Bots </h3>
+                                      <p style="font-family: Arial, sans-serif; font-size: 15px; line-height: 24px; margin: 0px 0px 15px; color: #545454;">We also highly recommend <a style="color: #24aa3b; text-decoration: none; cursor: pointer;" href="https://webiron.com" target="_blank"><b>WebIron</b></a> for complete cloud based real-time bot and automation website protection. They've were the first and still are the #1 fully AI based on the wire real-time security platform around. </p>
+
                                 </div>
                                 <div class="input-wrap">
                                     <label for="plan_range_slider"><?php _e('Slide button to change plan', 'dark-sources-password-scrubber'); ?></label>
@@ -137,7 +152,7 @@ function dark_sources_display_admin_page(){
                     </div>
         <!-- global settings -->
                     <div class="input-wrap">
-                        <label for="dark_sources_api_key"><?php _e('Please enter a valid API key below. To remove a key clear text and submit.', 'dark-sources-password-scrubber'); ?> <?php echo in_array('valid', $subscriber) || in_array('paid', $subscriber) ? '<span>(<span class="green">API key verified</span>)</span>' : '<span class="red">A Valid API Key is required.</span>'; ?>:</label>
+                        <a name="api_submit"></a><label for="dark_sources_api_key"><?php _e('Please enter a valid API key below. To remove a key clear text and submit.', 'dark-sources-password-scrubber'); ?> <?php echo in_array('valid', $subscriber) || in_array('paid', $subscriber) ? '<span>(<span class="green">API key verified</span>)</span>' : '<span class="red">A Valid API Key is required.</span>'; ?>:</label>
                         <input type="text" name="dark_sources_api_key" id="dark_sources_api_key" class="text" placeholder="Please enter a valid API Key" value="<?php echo in_array('valid', $subscriber) ? 'Valid Key' : ''; ?>">
                     </div>
                 </div>
